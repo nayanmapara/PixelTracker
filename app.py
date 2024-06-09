@@ -6,15 +6,15 @@ import requests
 
 app = Flask(__name__)
 
-USERNAME = os.environ.get('DB_USERNAME')
-PASSWORD = os.environ.get('DB_PASSWORD')
-HOST = os.environ.get('DB_HOST')
+host = os.environ["DB_HOST"]
+password = os.environ["DB_PASS"]
 
-MONGO_URI = F"mongodb+srv://{USERNAME}:{PASSWORD}@{HOST}.ynsjwzf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = f"mongodb+srv://{host}:{password}@cluster0.gurdfx8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 client = MongoClient(MONGO_URI)
 
-db = client['NW']
-collection = db['Clustor0']
+db = client[os.environ['DB_NAME']]
+collection = db[os.environ['DB_COLLECTION']]
 
 def get_geo_location(ip):
     try:
